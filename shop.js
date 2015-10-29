@@ -23,8 +23,8 @@ Customer.prototype.orderSandwich = function(sandwich) {
 
 Customer.prototype.getSandwich = function(shop) {
 	// pick sandwich up from shop.counter
-	for (var i = 0; i < this.counter.length; i++) {
-		this.lunch.push(this.counter[i].shift());
+	for (var i = 0; i < shop.counter.length; i++) {
+		this.lunch.push(shop.counter.shift());
 	};
 };
 
@@ -45,7 +45,7 @@ Server.prototype.queueOrder = function(customer) {
 
 Server.prototype.deliverOrder = function(customer) {
 	// calls the customer's getSandwich method
-	customer.getSandwich(this.shop.counter);
+	customer.getSandwich(this.shop);
 };
 
 var Artist = function (name, shop) {
@@ -61,8 +61,8 @@ Artist.prototype.makeSandwich = function(sandwich) {
 };
 
 Artist.prototype.processQueue = function() {
-	for (var i = 0; i < shop.sandwichQueue.length; i++) {
-		this.makeSandwich(shop.sandwichQueue[i]);
+	for (var i = 0; i < this.shop.sandwichQueue.length; i++) {
+		this.makeSandwich(this.shop.sandwichQueue[i]);
 	}
 };
 
@@ -102,4 +102,4 @@ kelley.processQueue();
 // jessica gives liz the sandwich
 jessica.deliverOrder(liz);
 
-
+console.log(liz);
